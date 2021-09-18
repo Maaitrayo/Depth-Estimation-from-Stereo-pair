@@ -32,7 +32,7 @@ https://user-images.githubusercontent.com/76429346/133894248-1c8e3be1-e1a8-4e3a-
 3. Matplotlib
 4. KIITI odometry dataset
 
-### If you donot have is installed, follow the following commands(for Ubuntu 20.04.3 LTS):
+## If you donot have them installed, following are the commands(for Ubuntu 20.04.3 LTS):
 ```bash
 sudo apt update
 ```
