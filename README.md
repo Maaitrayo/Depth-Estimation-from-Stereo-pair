@@ -25,3 +25,32 @@ https://user-images.githubusercontent.com/76429346/133894248-1c8e3be1-e1a8-4e3a-
 
 ## BM Disparity output:
 ![](images/bm.png)
+
+# Prerequisites:
+1. python3 or higher
+2. openCV for python
+3. Matplotlib
+4. KIITI odometry dataset
+### If you donot have is installed, follow the following commands(for Ubuntu 20.04.3 LTS):
+```bash
+sudo apt update
+```
+```bash
+sudo apt install libopencv-dev python3-opencv
+```
+```bash
+sudo apt-get install python-matplotlib
+```
+```bash
+http://www.cvlibs.net/datasets/kitti/eval_odometry.php
+```
+# To run the code:
+```bash
+git clone https://github.com/Maaitrayo/Depth-Estimation-from-Stereo-pair.git
+```
+```bash
+cd Depth-Estimation-from-Stereo-pair
+```
+```bash
+python depth_estimation.py
+```
