@@ -20,8 +20,7 @@ print("                     ####################################################
 
 
 
-left_img_file_path = input("Enter the left images folder path:\n") 
-#right_img_file_path = input("Enter the right images folder path:\n") 
+left_img_file_path = input("Enter the left images folder path:\n")  
 disparity_type = int(input("Enter the type of disparity, 1 for SBGM and 2 for BM:\n "))
 disparity_value = int(input("Do you want to print the disparity value(Matrix)?, 1 for YES and 0 for NO:\n "))
 image_show = int(input("Do you want to see anyone of the original stereo image?, 1 for YES and 0 for NO:\n "))
@@ -31,7 +30,6 @@ image_show = int(input("Do you want to see anyone of the original stereo image?,
 # ***************************************************** DATASET HANDLER *****************************************************
 
 # getting the file path for my left image dataset
-#path_left = glob.glob("/home/maaitrayo/Autonomous Vehicle/Datasets_short_IMU_GPS_STEREO/2011_09_26_drive_0001_sync/image_00/data/*.png") # LEFT IMAGES
 path_left = glob.glob(left_img_file_path+"/*.png") # LEFT IMAGES
 # creating a list to store the file path consecutively 
 lst_left = []
@@ -51,8 +49,6 @@ for file in path_right:
 # Sorting the images path according to the frame
 lst_right.sort()
 arr_right = np.array(lst_right)
-#print(path_left)
-#print(left_img_file_path)
 
 # ***************************************************** DATASET HANDLER ENDS *****************************************************
 
@@ -91,6 +87,7 @@ t_right = (t_right/t_right[3])[:3]
 
 # ***************************************************** DECOMPOSING PROJECTION MATRICES ENDS***************************************************** 
 
+# ***************************************************** DEPTH FOR STEREO IMAGE PAIR HANDLER FUNCTION *****************************************************
 
 def calculate_depth(disparity, k_left, t_left, t_right):
 
@@ -107,7 +104,7 @@ def calculate_depth(disparity, k_left, t_left, t_right):
     #plt.figure(figsize=(11,7))
     #plt.imshow(depth_map)
 
-
+# ***************************************************** DEPTH FOR STEREO IMAGE PAIR HANDLER FUNCTION ENDS *****************************************************
 
 
 
