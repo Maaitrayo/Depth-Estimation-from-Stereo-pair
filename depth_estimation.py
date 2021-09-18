@@ -8,9 +8,20 @@ import glob
 # ********************************************* IMPORTING MODULES *********************************************
 
 
+print("                     ####################################################################")
+print("                     #                                                                  #")
+print("                     #                                                                  #")
+print("                     #               WELCOME TO STEREO DEPTH ESTIMATION                 #")
+print("                     #         THE CODE IS OPTIMISED FOR KIITI ODOMETRY DATASET         #")
+print("                     #                                                                  #")
+print("                     #                                                                  #")
+print("                     #                                                                  #")
+print("                     ####################################################################")
+
+
 
 left_img_file_path = input("Enter the left images folder path:\n") 
-right_img_file_path = input("Enter the right images folder path:\n") 
+#right_img_file_path = input("Enter the right images folder path:\n") 
 disparity_type = int(input("Enter the type of disparity, 1 for SBGM and 2 for BM:\n "))
 disparity_value = int(input("Do you want to print the disparity value(Matrix)?, 1 for YES and 0 for NO:\n "))
 image_show = int(input("Do you want to see anyone of the original stereo image?, 1 for YES and 0 for NO:\n "))
@@ -31,6 +42,7 @@ lst_left.sort()
 arr_left = np.array(lst_left)
 
 # getting the file path for my right image dataset
+right_img_file_path = left_img_file_path.replace("image_0", "image_1")
 path_right = glob.glob(right_img_file_path+"/*.png") # RIGHT IMAGES
 # creating a list to store the file path consecutively
 lst_right = []
@@ -39,6 +51,8 @@ for file in path_right:
 # Sorting the images path according to the frame
 lst_right.sort()
 arr_right = np.array(lst_right)
+#print(path_left)
+#print(left_img_file_path)
 
 # ***************************************************** DATASET HANDLER ENDS *****************************************************
 
@@ -88,10 +102,10 @@ def calculate_depth(disparity, k_left, t_left, t_right):
 
     depth_map = np.ones(disparity.shape)
     depth_map = focal_length * base_line / disparity
-    print(depth_map[0][0])
-    #cv2.imshow("Depth", depth_map)
+    #print(depth_map[0][0])
+    cv2.imshow("Depth", depth_map)
     #plt.figure(figsize=(11,7))
-    plt.imshow(depth_map)
+    #plt.imshow(depth_map)
 
 
 
@@ -100,7 +114,7 @@ def calculate_depth(disparity, k_left, t_left, t_right):
 # ***************************************************** DISPARITY FOR STEREO IMAGE PAIR HANDLER FUNCTIONS *****************************************************
 
 #                                   ------------------------ Disparity type SBGM ------------------------
-def calculate_disparity_SBGM(img_L_g, img_R_g):
+def calculate_disparity_SGBM(img_L_g, img_R_g):
 
     global disparity
     calc_disparity_SBGM = cv2.StereoSGBM_create(minDisparity = 0, 
@@ -123,7 +137,7 @@ def calculate_disparity_SBGM(img_L_g, img_R_g):
     img_disparityA_SBGM = np.divide(disparity, 255.0)
     #cv2.imshow("disparity", img_disparityA_SBGM)
     #plt.imshow(img_disparityA_SBGM)
-    print(disparity[0][0])
+    #print(disparity[0][0])
     return(disparity)
 
 
@@ -150,8 +164,8 @@ def calculate_disparity_BM(img_L_g, img_R_g):
 
 
 
-#for i in range(len(arr_right)):
-for i in range(1):
+for i in range(len(arr_right)):
+#for i in range(1):
     img_L = cv2.imread(arr_left[i])
     img_R = cv2.imread(arr_right[i])
 
@@ -165,7 +179,7 @@ for i in range(1):
     #cv2.imshow("Image Right", img_R_g)
 
     if(disparity_type == 1):
-        calculate_disparity_SBGM(img_L_g, img_R_g)
+        calculate_disparity_SGBM(img_L_g, img_R_g)
 
     else:
         calculate_disparity_BM(img_L_g, img_R_g)
@@ -183,7 +197,7 @@ for i in range(1):
 
 
     plt.show()
-    cv2.waitKey(0)
+    cv2.waitKey(30)
 
 cv2.destroyAllWindows()
 
