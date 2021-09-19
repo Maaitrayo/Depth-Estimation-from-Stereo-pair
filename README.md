@@ -53,5 +53,5 @@ git clone https://github.com/Maaitrayo/Depth-Estimation-from-Stereo-pair.git
 cd Depth-Estimation-from-Stereo-pair
 ```
 ```bash
-python depth_estimation.py
+python3 depth_estimation.py
 ```
